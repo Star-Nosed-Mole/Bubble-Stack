@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-import MainContainer from './containers/mainContainer';
+
 
 
 // import MainContainer from './containers/MainContainer';
-class App extends Component {
+class MakeMap extends Component {
   constructor(props) {
     super(props);
   }
   render() {
       return (
         <div className="container">
-          <MainContainer />
+          <h1> hi</h1>
         </div>
       );
   }
 }
-export default App;
+export default MakeMap;
