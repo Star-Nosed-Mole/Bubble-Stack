@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-import MainContainer from './containers/mainContainer';
+import Bubble from './Bubble.jsx';
 
 
 // import MainContainer from './containers/MainContainer';
-class App extends Component {
+class Map extends Component {
   constructor(props) {
     super(props);
   }
   render() {
       return (
         <div className="container">
-          <MainContainer />
+          <Bubble />
         </div>
       );
   }
 }
-export default App;
+export default Map;
