@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Bubble from './Bubble.jsx';
 
 
 // import MainContainer from './containers/MainContainer';
@@ -8,8 +9,8 @@ class App extends Component {
   }
   render() {
       return (
-        <div>
-            <h1>we rendered </h1>
+        <div className="container">
+          <Bubble />
         </div>
       );
   }
