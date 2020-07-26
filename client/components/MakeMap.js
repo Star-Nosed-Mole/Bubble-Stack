@@ -23,6 +23,17 @@ class MakeMap extends Component {
     };
 
     this.getData = this.getData.bind(this);
+    this.hideBtn = this.hideBtn.bind(this)
+
+  }
+
+  componentDidMount () {
+    this.hideBtn();
+  }
+
+  hideBtn() {
+		let d = document.getElementById('stack-btn');
+		d.style.display = "none";
   }
 
   getData(tech) {

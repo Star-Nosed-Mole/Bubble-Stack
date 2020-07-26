@@ -1,3 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
+@import 'variables';
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.content {
+  text-align: center;
+}
+
 .bubbleContainer{
     height: 600px;
     transition: margin-left .5s;
@@ -11,7 +22,7 @@
   z-index: 1; /* Stay on top */
   top: 0; /* Stay at the top */
   left: 0;
-  background-color: rgb(70, 87, 78); /* Black*/
+  background-color: $primary;
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
@@ -24,8 +35,8 @@
   color: #ffffff;
   display: block;
   transition: 0.3s;
-  background-color: rgb(70, 87, 78);
-  border: 1px solid rgb(70, 87, 78);
+  background-color: $primary;
+  border: 1px solid $primary;
   outline: none;
 }
 
@@ -34,7 +45,17 @@
   cursor: pointer;
 }
 
-.collapsible-content li {
-  padding: 0 18px;
+.collapsible-content button {
+  background-color: $primary;
+  border: 1px solid $primary;
+  outline: none;
+  display: block;
   color: #ffffff;
+  font-size: 17px;
+  text-decoration: none;
+}
+
+.collapsible-content button:hover {
+  color: #b0a2d6;
+  cursor: pointer;
 }
