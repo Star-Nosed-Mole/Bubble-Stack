@@ -15,6 +15,19 @@ function Map() {
     }
   });
 
+  componentDidMount() {
+    fetch('/api/')
+      .then(res => res.json())
+      .then((query) => {
+        if (!Array.isArray(query)) characters = [];
+        return this.setState({
+          characters,
+          fetchedTechs: true
+        });
+      })
+      .catch(err => console.log('Map.componentDidMount: ERROR: ', err));
+  }
+
   return (
     <div className="bubbleContainer">
       <Bubble data={data} />
