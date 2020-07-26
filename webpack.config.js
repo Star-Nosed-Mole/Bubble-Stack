@@ -41,7 +41,7 @@ module.exports = {
       extensions: ['.tsx', '.ts', '.js'],
     },
     devServer: {
-        contentBase: path.join(__dirname, '/client'),
+      contentBase: path.join(__dirname, '/client'),
       publicPath: 'http://localhost:8080/build/',
       proxy: {
         '/make': 'http://localhost:3000',

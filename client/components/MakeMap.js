@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Bubble from './Bubble';
-import Map from './map';
 
 // import MainContainer from './containers/MainContainer';
 class MakeMap extends Component {
