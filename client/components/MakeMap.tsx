@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-
-
+import Bubble from './Bubble';
 
 // import MainContainer from './containers/MainContainer';
 class MakeMap extends Component {
@@ -8,11 +7,11 @@ class MakeMap extends Component {
     super(props);
   }
   render() {
-      return (
-        <div className="container">
-          <h1> hi</h1>
-        </div>
-      );
+    return (
+      <div className="bubbleContainer">
+        <Bubble />
+      </div>
+    );
   }
 }
 export default MakeMap;
