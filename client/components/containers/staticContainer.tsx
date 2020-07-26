@@ -11,7 +11,6 @@ class StaticContainer extends Component {
   render() {
     return (
       <div className="container">
-        <h1>big Map</h1>
         <Map />
       </div>
     );
