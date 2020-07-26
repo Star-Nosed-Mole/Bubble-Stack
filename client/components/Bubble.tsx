@@ -10,7 +10,7 @@ import { ResponsiveBubbleHtml } from '@nivo/circle-packing';
 const Bubble = (props) => {
   return (
     <ResponsiveBubbleHtml
-      root={props.data.data}
+      root={props.data}
       margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
       identity="name"
       value="loc"
