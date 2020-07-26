@@ -21,6 +21,7 @@
   "homepage": "https://github.com/Star-Nosed-Mole/Scratch#readme",
   "dependencies": {
     "@nivo/circle-packing": "^0.62.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "pg": "^8.3.0",
     "react": "^16.13.1",
