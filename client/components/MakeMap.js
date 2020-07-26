@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
 import Bubble from './Bubble';
 
-const npm = require('npm-stats-api');
-
-npm.stat('redux', '2018-01-01', '2019-05-01', (err, res) => {
-  let redux = JSON.stringify(res.downloads);
-  console.log('REDUX LOC: ', redux);
-});
 // import MainContainer from './containers/MainContainer';
 class MakeMap extends Component {
   constructor(props) {
