@@ -15,6 +15,12 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use('/api', apiRouter);
 
+app.get('/make', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/index.html'), (error) => {
+    if (error) res.status(400).send(error)
+  })
+})
+
 // global error handler
 app.use('*', (req, res) => res.sendStatus(404));
 
