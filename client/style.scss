@@ -1,3 +1,40 @@
-.bubbleContainer {
-  height: 600px;
+.bubbleContainer{
+    height: 600px;
+    transition: margin-left .5s;
+    padding: 20px;
+}
+
+.left-sidebar {
+  height: 100%; /* 100% Full-height */
+  width: 250px; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: rgb(70, 87, 78); /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+.left-sidebar summary {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #ffffff;
+  display: block;
+  transition: 0.3s;
+  background-color: rgb(70, 87, 78);
+  border: 1px solid rgb(70, 87, 78);
+  outline: none;
+}
+
+.left-sidebar summary:hover {
+  color: #b0a2d6;
+  cursor: pointer;
+}
+
+.collapsible-content li {
+  padding: 0 18px;
+  color: #ffffff;
 }
