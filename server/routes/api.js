@@ -3,8 +3,16 @@ const modelsController = require('../controllers/stackControllers');
 const router = express.Router();
 
 
-router.get('/', (req, res) => {
-  res.send('Success!');
+router.get('/',
+modelsController.getAll,
+ (req, res) => {
+  res.status(200).json(res.locals.all);
+  });
+
+router.post('/one',
+modelsController.findOne,
+ (req, res) => {
+  res.status(200).json(res.locals.one);
   });
   
 module.exports = router;

@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
-import MainContainer from './containers/mainContainer';
+
+import Map from '../map';
 
 // import MainContainer from './containers/MainContainer';
-class App extends Component {
+class StaticContainer extends Component {
   constructor(props) {
     super(props);
   }
+
   render() {
     return (
-      <div className="mainContainer">
-        <MainContainer />
+      <div className="container">
+        <h1>big Map</h1>
+        <Map />
       </div>
     );
   }
 }
-export default App;
+
+export default StaticContainer;
