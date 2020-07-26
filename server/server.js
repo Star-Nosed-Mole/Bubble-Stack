@@ -3,17 +3,19 @@ const express = require('express');
 const app = express();
 
 const path = require('path');
+const PORT = 3000;
+const apiRouter = require('./routes/api');
 
-const PORT = 3000
+app.use(express.json());
 
-app.use(express.json())
-// app.use('/', express.static('client')); 
-// app.use('/build', express.static(path.join(__dirname, '../build')));
 // statically serve everything in the build folder on the route '/build
 if (process.env.NODE_ENV === 'production') {
     app.use('/', express.static('client')); 
     app.use('/build', express.static(path.join(__dirname, '../build')));
   }
+
+app.use('/api', apiRouter);
+
 // global error handler
 app.use('*', (req,res) => res.sendStatus(404) )
 

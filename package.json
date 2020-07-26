@@ -1,8 +1,8 @@
 {
-  "name": "scratch-og",
+  "name": "bubble-stack",
   "version": "1.0.0",
-  "description": "scratch",
-  "main": "index.js",
+  "description": "bubble-stack",
+  "main": "index.ts",
   "scripts": {
     "start": "cross-env NODE_ENV=production webpack & cross-env NODE_ENV=production nodemon server/server.js",
     "server": "cross-env NODE_ENV=production webpack",
