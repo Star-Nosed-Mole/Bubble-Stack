@@ -33,6 +33,7 @@ class MakeMap extends Component {
           </div>
         </div>
       );
+    
   }
 }
 export default MakeMap;

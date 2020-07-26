@@ -7,13 +7,15 @@ class StaticContainer extends Component {
   constructor(props) {
     super(props);
   }
+
   render() {
-      return (
-        <div className="container">
-            <h1>big Map</h1>
-          <Map />
-        </div>
-      );
+    return (
+      <div className="container">
+        <h1>big Map</h1>
+        <Map />
+      </div>
+    );
   }
 }
+
 export default StaticContainer;
