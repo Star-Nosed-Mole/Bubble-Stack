@@ -38,13 +38,13 @@ stackController.getAll = (req, res, next) => {
 // retrieve information for a specific library
 stackController.getLibrary = (req, res, next) => {
   const name = req.body.library;
+
   const queryOne = `SELECT libraries.name, types.name AS type, framework.name AS framework FROM libraries 
                         INNER JOIN types ON libraries.type_id = types.type_id
                         INNER JOIN framework ON libraries.framework_id = framework.framework_id
                         WHERE libraries.name = '${name}'; `;
   db.query(queryOne)
     .then((data) => {
-      console.log(data.rows);
       res.locals.one = data.rows[0];
       return next();
     })
@@ -59,14 +59,14 @@ stackController.getTypes = (req, res, next) => {
   const queryTypes = `SELECT * FROM types;`;
 
   db.query(queryTypes)
-   .then((data) => {
-     console.log(data.rows);
-     res.locals.types = data.rows;
-     return next();
-   })
-   .catch((err) => {
-     return next(err);
-   });
+    .then((data) => {
+      console.log(data.rows);
+      res.locals.types = data.rows;
+      return next();
+    })
+    .catch((err) => {
+      return next(err);
+    });
 };
 
 //retrieve all libraries for a specific framework
@@ -78,14 +78,14 @@ stackController.getFramework = (req, res, next) => {
                           WHERE framework.name = '${name}';`;
 
   db.query(queryFramework)
-   .then((data) => {
-     console.log(data.rows);
-     res.locals.framework = data.rows;
-     return next();
-   })
-   .catch((err) => {
-     return next(err);
-   });
+    .then((data) => {
+      console.log(data.rows);
+      res.locals.framework = data.rows;
+      return next();
+    })
+    .catch((err) => {
+      return next(err);
+    });
 };
 
 //add type
@@ -94,12 +94,12 @@ stackController.addType = (req, res, next) => {
   const queryType = `INSERT INTO types VALUES ('${type}');`;
 
   db.query(queryType)
-   .then((data) => {
-     return next();
-   })
-   .catch((err) => {
-     return next(err);
-   });
+    .then((data) => {
+      return next();
+    })
+    .catch((err) => {
+      return next(err);
+    });
 };
 
 //delete type
@@ -108,12 +108,12 @@ stackController.deleteType = (req, res, next) => {
   const queryType = `DELETE FROM types WHERE name = '${type}';`;
 
   db.query(queryType)
-   .then((data) => {
-     return next();
-   })
-   .catch((err) => {
-     return next(err);
-   });
+    .then((data) => {
+      return next();
+    })
+    .catch((err) => {
+      return next(err);
+    });
 };
 
 //add framework
@@ -122,12 +122,12 @@ stackController.addFramework = (req, res, next) => {
   const queryFramework = `INSERT INTO framework (name) VALUES ('${framework}');`;
 
   db.query(queryFramework)
-   .then((data) => {
-     return next();
-   })
-   .catch((err) => {
-     return next(err);
-   });
+    .then((data) => {
+      return next();
+    })
+    .catch((err) => {
+      return next(err);
+    });
 };
 
 //delete framework
@@ -136,14 +136,13 @@ stackController.deleteFramework = (req, res, next) => {
   const queryFramework = `DELETE FROM framework WHERE name = '${framework}';`;
 
   db.query(queryFramework)
-   .then((data) => {
-     return next();
-   })
-   .catch((err) => {
-     return next(err);
-   });
+    .then((data) => {
+      return next();
+    })
+    .catch((err) => {
+      return next(err);
+    });
 };
-
 
 //add library
 stackController.addLibrary = (req, res, next) => {
@@ -155,14 +154,13 @@ stackController.addLibrary = (req, res, next) => {
                         (SELECT type_id FROM types WHERE types.name = '${type}'));`;
 
   db.query(queryLibrary)
-   .then((data) => {
-     return next();
-   })
-   .catch((err) => {
-     return next(err);
-   });
+    .then((data) => {
+      return next();
+    })
+    .catch((err) => {
+      return next(err);
+    });
 };
-
 
 //delete library
 stackController.deleteLibrary = (req, res, next) => {
@@ -170,12 +168,12 @@ stackController.deleteLibrary = (req, res, next) => {
   const queryLibrary = `DELETE FROM libraries WHERE name = '${library}';`;
 
   db.query(queryLibrary)
-   .then((data) => {
-     return next();
-   })
-   .catch((err) => {
-     return next(err);
-   });
+    .then((data) => {
+      return next();
+    })
+    .catch((err) => {
+      return next(err);
+    });
 };
 
 module.exports = stackController;
