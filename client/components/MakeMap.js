@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Bubble from './Bubble';
+import { findConfigFile } from 'typescript';
 
 // import MainContainer from './containers/MainContainer';
 class MakeMap extends Component {
@@ -8,7 +9,7 @@ class MakeMap extends Component {
     this.state = {
       name: 'React',
       color: 'hsl(191, 70%, 50%)',
-      loc: 13285,
+      loc: 0,
       children: []
     };
 
@@ -35,12 +36,62 @@ class MakeMap extends Component {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // create innerBubble objec to push to children array
+        let innerBubble = {};
+        // let name = data.name;
+        console.log('DATA OBJ: ', data.type, data.name);
+        // create shallow copy of state's children array to manipulate
         let childrenArray = [...this.state.children];
-        childrenArray.push(data);
+        // check if childrenArray is empty
+        if (childrenArray.length === 0) {
+          innerBubble.name = data.name;
+          innerBubble.loc = 5000;
+          console.log('IN LENGTH 0 check');
+          if (data.type === 'state-management') {
+            innerBubble.color = 'hsl(228, 96%, 51%)';
+          } else if (data.type === 'ui-components') {
+            innerBubble.color = 'hsl(24, 96%, 67%)';
+          } else if (data.type === 'router') {
+            innerBubble.color = 'hsl(156, 41%, 54%)';
+          }
+        }
+        let nameExists = false;
+        for (let i = 0; i < childrenArray.length; i++) {
+          // if a bubble object doesn't exist with name property
+          if (childrenArray[i].name === data.name) {
+            // do something
+            nameExists = true;
+            childrenArray.splice(i, 1);
+            console.log('CHIDLREN ARRAY: ', childrenArray);
+            this.setState({
+              ...this.state,
+              children: childrenArray
+            });
+          }
+        }
+
+        if (nameExists === false) {
+          console.log('TEST');
+          innerBubble.name = data.name;
+          innerBubble.loc = 6000;
+          if (data.type === 'state-management') {
+            innerBubble.color = 'hsl(228, 96%, 51%)';
+          } else if (data.type === 'ui-components') {
+            innerBubble.color = 'hsl(24, 96%, 67%)';
+          } else if (data.type === 'router') {
+            innerBubble.color = 'hsl(156, 41%, 54%)';
+          }
+        }
+
+        // take location and name add to an object and push copy of state.children array
+        // if data.type === 'state management' set color to blue
+        childrenArray.push(innerBubble);
         this.setState({
+          ...this.state,
           children: childrenArray
         });
+
+        console.log('STATE: ', this.state);
       });
   }
 
