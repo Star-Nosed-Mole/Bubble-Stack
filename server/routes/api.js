@@ -30,7 +30,7 @@ modelsController.getFramework,
     res.status(200).json(res.locals.framework);
   });
 
-//REQUESTS TO CREATE/ADD TO THE DATABASE
+//REQUESTS TO CREATE/DELETE IN THE DATABASE
 //route add type
 router.post('/addType',
 modelsController.addType,
