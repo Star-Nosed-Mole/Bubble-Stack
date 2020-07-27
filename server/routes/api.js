@@ -2,6 +2,37 @@ const express = require('express');
 const modelsController = require('../controllers/stackControllers');
 const router = express.Router();
 
+// Backend API Requests
+// GET to '/'
+// Retrieve all libraries and properties(types and frameworks)
+
+// POST to '/getLibrary' { "library": value }
+// Retrieve ONE library and its properties
+
+// GET to '/getTypes'
+// Retrieve all types
+
+// POST to '/getFramework' { "framework": value }
+// Retrieve libraries and corresponding types for ONE framework
+
+// POST to '/addType' { "type": value }
+// Add new type to database
+
+// POST to '/deleteType' { "type": value }
+// Remove type from database
+
+// POST to '/addFramework' { "framework": value }
+// Add new framework to database
+
+// POST to '/deleteFramework' { "framework": value }
+// Remove framework from database
+
+// POST to '/addLibrary' { "library": value, "framework": value, "type": value }
+// Add new library to database
+
+// POST to '/deleteLibrary' { "library": value }
+// Remove library from database
+
 //route get all libraries of all types and frameworks
 router.get('/',
 modelsController.getAll,
