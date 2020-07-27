@@ -9,13 +9,22 @@ class MakeMap extends Component {
     this.state = {
       name: 'React',
       color: 'hsl(191, 70%, 50%)',
-      loc: 0,
-      children: []
+      loc: 10000,
+      children: [],
+      show: false
     };
 
     this.getData = this.getData.bind(this);
     this.hideBtn = this.hideBtn.bind(this);
   }
+
+  // showModal = () => {
+  //   this.setState({ show: true });
+  // };
+
+  // hideModal = () => {
+  //   this.setState({ show: false });
+  // };
 
   componentDidMount() {
     this.hideBtn();
@@ -36,25 +45,14 @@ class MakeMap extends Component {
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         // create innerBubble objec to push to children array
         let innerBubble = {};
         // let name = data.name;
         console.log('DATA OBJ: ', data.type, data.name);
         // create shallow copy of state's children array to manipulate
         let childrenArray = [...this.state.children];
-        // check if childrenArray is empty
-        if (childrenArray.length === 0) {
-          innerBubble.name = data.name;
-          innerBubble.loc = 5000;
-          console.log('IN LENGTH 0 check');
-          if (data.type === 'state-management') {
-            innerBubble.color = 'hsl(228, 96%, 51%)';
-          } else if (data.type === 'ui-components') {
-            innerBubble.color = 'hsl(24, 96%, 67%)';
-          } else if (data.type === 'router') {
-            innerBubble.color = 'hsl(156, 41%, 54%)';
-          }
-        }
+
         let nameExists = false;
         for (let i = 0; i < childrenArray.length; i++) {
           // if a bubble object doesn't exist with name property
@@ -63,29 +61,31 @@ class MakeMap extends Component {
             nameExists = true;
             childrenArray.splice(i, 1);
             console.log('CHIDLREN ARRAY: ', childrenArray);
-            this.setState({
-              ...this.state,
-              children: childrenArray
-            });
+            // return this.setState({
+            //   ...this.state,
+            //   children: childrenArray
+            // });
           }
         }
 
         if (nameExists === false) {
           console.log('TEST');
           innerBubble.name = data.name;
-          innerBubble.loc = 6000;
+          innerBubble.description = 'DESCRIPTION';
+          innerBubble.loc = 3000;
           if (data.type === 'state-management') {
-            innerBubble.color = 'hsl(228, 96%, 51%)';
+            innerBubble.color = 'hsl(228, 70%, 50%)';
           } else if (data.type === 'ui-components') {
-            innerBubble.color = 'hsl(24, 96%, 67%)';
+            innerBubble.color = 'hsl(24, 70%, 50%)';
           } else if (data.type === 'router') {
-            innerBubble.color = 'hsl(156, 41%, 54%)';
+            innerBubble.color = 'hsl(156, 70%, 50%)';
           }
+          childrenArray.push(innerBubble);
         }
 
         // take location and name add to an object and push copy of state.children array
         // if data.type === 'state management' set color to blue
-        childrenArray.push(innerBubble);
+
         this.setState({
           ...this.state,
           children: childrenArray
@@ -112,10 +112,10 @@ class MakeMap extends Component {
           <details>
             <summary>UI Components</summary>
             <ul className="collapsible-content">
-              <button onClick={() => this.getData('materialui')}>
+              <button onClick={() => this.getData('material-ui')}>
                 Material UI
               </button>
-              <button onClick={() => this.getData('bootstrap')}>
+              <button onClick={() => this.getData('react-bootstrap')}>
                 React Bootstrap
               </button>
               <button onClick={() => this.getData('rebass')}>Rebass</button>
@@ -132,3 +132,17 @@ class MakeMap extends Component {
 }
 
 export default MakeMap;
+
+// check if childrenArray is empty
+// if (childrenArray.length === 0) {
+//   innerBubble.name = data.name;
+//   innerBubble.loc = 2000;
+//   console.log('IN LENGTH 0 check');
+//   if (data.type === 'state-management') {
+//     innerBubble.color = 'hsl(228, 96%, 51%)';
+//   } else if (data.type === 'ui-components') {
+//     innerBubble.color = 'hsl(24, 96%, 67%)';
+//   } else if (data.type === 'router') {
+//     innerBubble.color = 'hsl(156, 41%, 54%)';
+//   }
+// }
