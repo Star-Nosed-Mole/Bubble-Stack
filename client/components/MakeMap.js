@@ -7,46 +7,37 @@ class MakeMap extends Component {
     super(props);
     this.state = {
       name: 'React',
-      children: [
-        {
-          name: 'Redux',
-          color: 'hsl(191, 70%, 50%)',
-          loc: 13285
-        },
-        {
-          name: 'Bootstrap',
-          color: 'hsl(191, 70%, 50%)',
-          loc: 13285
-        }
-      ]
+      color: 'hsl(191, 70%, 50%)',
+      loc: 13285,
+      children: []
     };
 
     this.getData = this.getData.bind(this);
-    this.hideBtn = this.hideBtn.bind(this)
-
+    this.hideBtn = this.hideBtn.bind(this);
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.hideBtn();
   }
 
   hideBtn() {
-		let d = document.getElementById('stack-btn');
-		d.style.display = "none";
+    let d = document.getElementById('stack-btn');
+    d.style.display = 'none';
   }
 
   getData(tech) {
-    fetch('/api/one', {
+    fetch('api/getLibrary', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application-json'
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ name: tech })
+      body: JSON.stringify({ library: tech })
     })
       .then((res) => res.json())
       .then((data) => {
-        let childrenArray = this.state.children;
-        childrenArray.push(data[0]);
+        console.log(data);
+        let childrenArray = [...this.state.children];
+        childrenArray.push(data);
         this.setState({
           children: childrenArray
         });
