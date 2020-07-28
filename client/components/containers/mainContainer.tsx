@@ -15,10 +15,10 @@ class MainContainer extends Component {
         <Router>
           <div className="container">
             <div className="content">
-            <h1>Bubble-Stack</h1>
-            <button id="stack-btn">
-              <Link to="/make">Create New Stack</Link>
-            </button>
+              <h1>Bubble Stack</h1>
+              <button id="stack-btn">
+                <Link to="/make">Create New Stack</Link>
+              </button>
             </div>
             <Switch>
               <Route path="/make">
