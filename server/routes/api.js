@@ -34,16 +34,19 @@ const router = express.Router();
 // Remove library from database
 
 //route get all libraries of all types and frameworks
-router.get('/', modelsController.getAll,
-(req, res) => {
+router.get('/', modelsController.getAll, (req, res) => {
   res.status(200).json(res.locals.all);
 });
 
 // route get ONE specific library's information
-router.post('/getLibrary', modelsController.getLibrary,
- (req, res) => {
-  res.status(200).json(res.locals.one);
-});
+router.post(
+  '/getLibrary',
+  modelsController.updateLoc,
+  modelsController.getLibrary,
+  (req, res) => {
+    res.status(200).json(res.locals.one);
+  }
+);
 
 //route retrieve types
 router.get('/getTypes', modelsController.getTypes, (req, res) => {
