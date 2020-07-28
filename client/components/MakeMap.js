@@ -8,17 +8,10 @@ class MakeMap extends Component {
     super(props);
     this.state = {
       name: 'React',
-<<<<<<< HEAD
       color: 'hsl(191, 80%, 50%)',
       loc: 13285,
       children: [
       ]
-=======
-      color: 'hsl(191, 70%, 50%)',
-      loc: 10000,
-      children: [],
-      show: false
->>>>>>> master
     };
 
     this.getData = this.getData.bind(this);
