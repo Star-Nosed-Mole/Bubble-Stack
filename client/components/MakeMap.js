@@ -7,17 +7,9 @@ class MakeMap extends Component {
     super(props);
     this.state = {
       name: 'React',
+      color: 'hsl(191, 80%, 50%)',
+      loc: 13285,
       children: [
-        {
-          name: 'Redux',
-          color: 'hsl(191, 70%, 50%)',
-          loc: 13285
-        },
-        {
-          name: 'Bootstrap',
-          color: 'hsl(191, 70%, 50%)',
-          loc: 13285
-        }
       ]
     };
 
@@ -36,12 +28,12 @@ class MakeMap extends Component {
   }
 
   getData(tech) {
-    fetch('/api/one', {
+    fetch('/api/getLibrary', {
       method: 'POST',
       headers: {
         'Content-Type': 'application-json'
       },
-      body: JSON.stringify({ name: tech })
+      body: JSON.stringify({ library: tech })
     })
       .then((res) => res.json())
       .then((data) => {
