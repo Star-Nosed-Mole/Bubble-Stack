@@ -72,7 +72,9 @@ stackController.getLibrary = (req, res, next) => {
                         WHERE libraries.name = '${name}'; `;
   db.query(queryOne)
     .then((data) => {
+      console.log(data.rows[0]);
       res.locals.one = data.rows[0];
+      console.log('RESLOCALSONE ', res.locals.one);
       return next();
     })
     .catch((err) => {
@@ -82,16 +84,16 @@ stackController.getLibrary = (req, res, next) => {
 
 // update loc column in libraries table
 stackController.updateLoc = (req, res, next) => {
-  console.log("passing", passing)
-  db.query(passing) 
+  // console.log('passing', passing);
+  db.query(passing)
     .then(() => {
-      console.log('SUCCESS')
-      return next()
+      // console.log('SUCCESS');
+      return next();
     })
     .catch((err) => {
       return next(err);
-    })
-}
+    });
+};
 
 //retrieve types
 stackController.getTypes = (req, res, next) => {
