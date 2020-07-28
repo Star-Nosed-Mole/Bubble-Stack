@@ -6,8 +6,10 @@ import { ResponsiveBubbleHtml } from '@nivo/circle-packing';
 // no chart will be rendered.
 // website examples showcase many properties,
 // you'll often use just a few of them.
+// check nivo bubble chart documentation to see the boilerplate and properties
 
 const Bubble = (props) => {
+  // opens reactjs website. planned to open each techs respective website onClick of bubble
   const openTech = () => {
     const url = 'https://reactjs.org/';
     window.open(url, '_blank');

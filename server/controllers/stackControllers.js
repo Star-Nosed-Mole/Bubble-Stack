@@ -4,7 +4,7 @@ const npm = require('npm-stats-api');
 
 const stackController = {};
 
-// day is hardcoded in as 11 
+// day is hardcoded in as 11
 let day = 11;
 let date = new Date();
 let today = date.getDate();
@@ -17,10 +17,19 @@ if (today > day + 5) {
   db.query(queryGetNames)
     .then((data) => {
       data.rows.forEach((tech) => {
-        npm.stat(tech.name, '2020-01-01', `${formattedDate}`, (err, response) => {
-          queryUpdateLibrary.push(`UPDATE libraries SET loc = ${Math.floor(response.downloads/1000)} WHERE name = '${tech.name}';`)
-          passing = queryUpdateLibrary.join(' ');
-        })
+        npm.stat(
+          tech.name,
+          '2020-01-01',
+          `${formattedDate}`,
+          (err, response) => {
+            queryUpdateLibrary.push(
+              `UPDATE libraries SET loc = ${Math.floor(
+                response.downloads / 1000
+              )} WHERE name = '${tech.name}';`
+            );
+            passing = queryUpdateLibrary.join(' ');
+          }
+        );
       });
     })
     .catch((err) => {
@@ -52,7 +61,9 @@ stackController.getLibrary = (req, res, next) => {
                         WHERE libraries.name = '${name}'; `;
   db.query(queryOne)
     .then((data) => {
+      console.log(data.rows[0]);
       res.locals.one = data.rows[0];
+      console.log('RESLOCALSONE ', res.locals.one);
       return next();
     })
     .catch((err) => {
@@ -61,22 +72,22 @@ stackController.getLibrary = (req, res, next) => {
 };
 
 stackController.updateLoc = (req, res, next) => {
-  console.log("passing", passing)
-  db.query(passing) 
+  // console.log('passing', passing);
+  db.query(passing)
     .then(() => {
-      console.log('SUCCESS')
-      return next()
+      // console.log('SUCCESS');
+      return next();
     })
     .catch((err) => {
       return next(err);
-    })
-}
+    });
+};
 
 // update library with API data
 stackController.updateLibrary = (req, res, next) => {
   // let tech = req.body.library;
   let date = new Date();
-  let formattedDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
+  let formattedDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
   let today = date.getDate();
   // only update libraries table with loc every 5 days
   if (today > day + 5) {
@@ -85,40 +96,40 @@ stackController.updateLibrary = (req, res, next) => {
     const queryGetNames = `SELECT name FROM libraries`;
     db.query(queryGetNames)
       .then((data) => {
-        return data.rows
+        return data.rows;
         // let locs = [];
       })
-      .then(arr => {
+      .then((arr) => {
         techs.forEach((tech) => {
           npm.stat(tech.name, '2018-01-01', `${formattedDate}`, (err, res) => {
             // locs.push(JSON.stringify(res.downloads));
             // console.log(`${tech.name} loc`, locs);
-            console.log(res.downloads)
-            const queryUpdateLibrary = 'UDPATE libraries SET loc = res.downloads WHERE name = `${tech.name}`';
-            db.query(queryUpdateLibrary) 
-            .then(() => {
-              console.log('SUCCESS')
-              // return next()
-            })
-            .catch((err) => {
-              return next(err);
-            })
+            // console.log(res.downloads);
+            const queryUpdateLibrary =
+              'UDPATE libraries SET loc = res.downloads WHERE name = `${tech.name}`';
+            db.query(queryUpdateLibrary)
+              .then(() => {
+                console.log('SUCCESS');
+                // return next()
+              })
+              .catch((err) => {
+                return next(err);
+              });
           });
         });
       })
       .catch((err) => {
         return next(err);
       });
-  // TODO: 
-  // update library with loc
+    // TODO:
+    // update library with loc
     // 'UDPATE libraries SET loc = `${locs[i]}` WHERE name = `${techs[i]}`
 
-  // update global day variable to today
-  day = today;
-  return next()
-  }
-  else {
-    return next()
+    // update global day variable to today
+    day = today;
+    return next();
+  } else {
+    return next();
   }
 };
 
