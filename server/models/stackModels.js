@@ -1,3 +1,6 @@
+//URI file is hidden. Please request URI from previous team or can use empty database
+//Database has 3 tables, framework, libraries, types.
+
 // import PG_URI from '../../.env';
 const { Pool } = require('pg');
 
