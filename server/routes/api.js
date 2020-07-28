@@ -40,7 +40,7 @@ router.get('/', modelsController.getAll, (req, res) => {
 
 // route get ONE specific library's information
 router.post('/getLibrary', modelsController.getLibrary, (req, res) => {
-  res.status(200).json(res.locals.one);
+  res.status(200).json(res.locals);
 });
 
 //route retrieve types

@@ -15,8 +15,13 @@ const techs = [
 let locs = [];
 techs.forEach((tech) => {
   npm.stat(tech, '2018-01-01', '2019-05-01', (err, res) => {
-    locs.push(JSON.stringify(res.downloads));
-    console.log(`${tech} loc`, locs);
+    let techObj = {};
+    techObj[tech] = JSON.stringify(res.downloads);
+    // let techObj = {
+    //   key: JSON.stringify(res.downloads)
+    // };
+    locs.push(techObj);
+    // console.log(`${tech} loc`, locs);
   });
 });
 
@@ -46,6 +51,8 @@ stackController.getLibrary = (req, res, next) => {
   db.query(queryOne)
     .then((data) => {
       res.locals.one = data.rows[0];
+      res.locals.locs = locs;
+      console.log('GET LIBRARY: ', res.locals);
       return next();
     })
     .catch((err) => {

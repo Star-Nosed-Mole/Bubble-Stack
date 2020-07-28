@@ -45,17 +45,20 @@ class MakeMap extends Component {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         // create innerBubble objec to push to children array
+        let locs = data.locs;
+        console.log('LOCS', locs);
+        data = data.one;
         let innerBubble = {};
         // let name = data.name;
-        console.log('DATA OBJ: ', data.type, data.name);
+        console.log('DATA OBJ: ', data);
         // create shallow copy of state's children array to manipulate
         let childrenArray = [...this.state.children];
 
         let nameExists = false;
         for (let i = 0; i < childrenArray.length; i++) {
           // if a bubble object doesn't exist with name property
+          //childrenArray[i].loc = locs[i];
           if (childrenArray[i].name === data.name) {
             // do something
             nameExists = true;
@@ -72,6 +75,7 @@ class MakeMap extends Component {
           console.log('TEST');
           innerBubble.name = data.name;
           innerBubble.description = 'DESCRIPTION';
+          if (innerBubble.name === )
           innerBubble.loc = 3000;
           if (data.type === 'state-management') {
             innerBubble.color = 'hsl(228, 70%, 50%)';
