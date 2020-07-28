@@ -6,6 +6,7 @@ import { findConfigFile } from 'typescript';
 class MakeMap extends Component {
   constructor(props) {
     super(props);
+    // bubble chart initial state.
     this.state = {
       name: 'React',
       color: 'hsl(191, 70%, 50%)',
@@ -34,7 +35,7 @@ class MakeMap extends Component {
     let d = document.getElementById('stack-btn');
     d.style.display = 'none';
   }
-
+  // post request passing string of text from onClick in navbar to backend for query
   getData(tech) {
     fetch('/api/getLibrary', {
       method: 'POST',
@@ -45,36 +46,28 @@ class MakeMap extends Component {
     })
       .then((res) => res.json())
       .then((data) => {
-        // create innerBubble objec to push to children array
+        // create bubble object to add to bubble charts children array for rendering
+        let innerBubble = {};
+        // assign aliases for name and loc from
         let name = data.name;
         let loc = data.loc;
-        let innerBubble = {};
-        // let name = data.name;
-        console.log('DATA OBJ: ', data);
         // create shallow copy of state's children array to manipulate
         let childrenArray = [...this.state.children];
-
+        // boolean flag to check if the tech alreay exists in the children array
         let nameExists = false;
         for (let i = 0; i < childrenArray.length; i++) {
-          // if a bubble object doesn't exist with name property
-          //childrenArray[i].loc = locs[i];
+          // if a bubble object already exists with name property (because the user has already clicked on that tech)
           if (childrenArray[i].name === data.name) {
-            // do something
             nameExists = true;
+            // remove that element from the array
             childrenArray.splice(i, 1);
-            console.log('CHIDLREN ARRAY: ', childrenArray);
-            // return this.setState({
-            //   ...this.state,
-            //   children: childrenArray
-            // });
           }
         }
-
+        // if know tech is found after iterating through children array we will build out the innerBubble object
         if (nameExists === false) {
-          console.log('TEST');
+          // add properties and/or values to bubble objects
           innerBubble.name = name;
           innerBubble.description = 'DESCRIPTION';
-          // if (innerBubble.name === data.name)
           innerBubble.loc = loc;
           if (data.type === 'state-management') {
             innerBubble.color = 'hsl(228, 70%, 50%)';
@@ -83,29 +76,25 @@ class MakeMap extends Component {
           } else if (data.type === 'router') {
             innerBubble.color = 'hsl(156, 70%, 50%)';
           }
+          // push innerBubble object to childrenArray
           childrenArray.push(innerBubble);
         }
-
-        // take location and name add to an object and push copy of state.children array
-        // if data.type === 'state management' set color to blue
-
+        // update state with childrenArray.
         this.setState({
           ...this.state,
           children: childrenArray
         });
-
-        console.log('STATE: ', this.state);
       });
   }
 
   render() {
-    console.log(this.state);
     return (
       <div className="container">
         <div className="left-sidebar">
           <details>
             <summary>State Management</summary>
             <ul className="collapsible-content">
+              {/* fire getData method onClick and pass in the tech they clicked on in the navbar */}
               <button onClick={() => this.getData('redux')}>Redux</button>
               <button onClick={() => this.getData('recoil')}>Recoil</button>
               <button onClick={() => this.getData('mobx')}>MobX</button>
@@ -127,6 +116,7 @@ class MakeMap extends Component {
         </div>
 
         <div className="bubbleContainer">
+          {/* pass state down to bubble chart */}
           <Bubble data={this.state} />
         </div>
       </div>
@@ -135,17 +125,3 @@ class MakeMap extends Component {
 }
 
 export default MakeMap;
-
-// check if childrenArray is empty
-// if (childrenArray.length === 0) {
-//   innerBubble.name = data.name;
-//   innerBubble.loc = 2000;
-//   console.log('IN LENGTH 0 check');
-//   if (data.type === 'state-management') {
-//     innerBubble.color = 'hsl(228, 96%, 51%)';
-//   } else if (data.type === 'ui-components') {
-//     innerBubble.color = 'hsl(24, 96%, 67%)';
-//   } else if (data.type === 'router') {
-//     innerBubble.color = 'hsl(156, 41%, 54%)';
-//   }
-// }
