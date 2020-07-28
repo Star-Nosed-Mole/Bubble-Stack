@@ -46,7 +46,9 @@ stackController.getLibrary = (req, res, next) => {
                         WHERE libraries.name = '${name}'; `;
   db.query(queryOne)
     .then((data) => {
+      console.log(data.rows[0]);
       res.locals.one = data.rows[0];
+      console.log('RESLOCALSONE ', res.locals.one);
       return next();
     })
     .catch((err) => {
