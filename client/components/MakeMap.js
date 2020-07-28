@@ -66,6 +66,7 @@ class MakeMap extends Component {
         // if know tech is found after iterating through children array we will build out the innerBubble object
         if (nameExists === false) {
           // add properties and/or values to bubble objects
+          // conditional statements are to assign colors to bubbles
           innerBubble.name = name;
           innerBubble.description = 'DESCRIPTION';
           innerBubble.loc = loc;

@@ -47,7 +47,7 @@ if (today > day + 5) {
       return err;
     });
 }
-
+// retrieve info from all libraries
 stackController.getAll = (req, res, next) => {
   const queryAll = `SELECT libraries.name, types.name AS type, framework.name AS framework FROM libraries 
                     INNER JOIN types ON libraries.type_id = types.type_id

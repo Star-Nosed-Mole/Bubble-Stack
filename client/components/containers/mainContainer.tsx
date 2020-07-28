@@ -8,7 +8,7 @@ class MainContainer extends Component {
   constructor(props) {
     super(props);
   }
-
+// router set up to render make map on clicking the button
   render() {
     return (
       <div>
