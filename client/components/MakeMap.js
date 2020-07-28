@@ -36,7 +36,7 @@ class MakeMap extends Component {
   }
 
   getData(tech) {
-    fetch('api/getLibrary', {
+    fetch('/api/getLibrary', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -46,9 +46,8 @@ class MakeMap extends Component {
       .then((res) => res.json())
       .then((data) => {
         // create innerBubble objec to push to children array
-        let locs = data.locs;
-        console.log('LOCS', locs);
-        data = data.one;
+        let name = data.name;
+        let loc = data.loc;
         let innerBubble = {};
         // let name = data.name;
         console.log('DATA OBJ: ', data);
@@ -73,10 +72,10 @@ class MakeMap extends Component {
 
         if (nameExists === false) {
           console.log('TEST');
-          innerBubble.name = data.name;
+          innerBubble.name = name;
           innerBubble.description = 'DESCRIPTION';
-          if (innerBubble.name === )
-          innerBubble.loc = 3000;
+          // if (innerBubble.name === data.name)
+          innerBubble.loc = loc;
           if (data.type === 'state-management') {
             innerBubble.color = 'hsl(228, 70%, 50%)';
           } else if (data.type === 'ui-components') {
