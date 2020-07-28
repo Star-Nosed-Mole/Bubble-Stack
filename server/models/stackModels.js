@@ -1,3 +1,6 @@
+// URI to the postgres database is in .env file which is not commited to github. Please request URI from previous team
+// Database contains 3 tables for technology Libraries, Framework, and Types
+
 // import PG_URI from '../../.env';
 const { Pool } = require('pg');
 
